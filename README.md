@@ -7,7 +7,7 @@ Install these tools by cloning the repo and adding it to your shell's PATH; for 
 export PATH="$PATH:$HOME/bettergit"
 ```
 
-Git will automatically pick them up as new commands, which also means they can be used seamlessly with [allgit].  All the tools will print a brief usage message when called with `-h` or `--help` (for now they don't have proper `man` pages so `git help` _won't_ work 😞)
+Git will automatically pick them up as new commands, which also means they can be used seamlessly with [allgit] to work with many repositories.  All the tools will print a brief usage message when called with `-h` or `--help` (for now they don't have proper `man` pages so `git help` _won't_ work 😞)
 
 [allgit]: https://github.com/inventhouse/allgit
 
