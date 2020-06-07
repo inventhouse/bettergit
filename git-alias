@@ -17,6 +17,9 @@ USAGE
     exit 0
 fi
 
+# Bold=`tput bold`
+# Off=`tput sgr0`
+
 if [ "$1" == "-s" -o "$1" == "--script" ]; then
     # Print as a script
     echo "#!/bin/sh"
@@ -30,19 +33,20 @@ if [ "$1" == "-u" -o "$1" == "--unset" ]; then
         exit 1
     fi
     # Set an alias
-    git config --list | grep "alias.$2=" | sed -e $'s/alias\.\([^=]*\)=\(.*\)/Unsetting \\1 = \'\\2\'/'
+    git config --list | grep "alias.$2=" | sed -e $'s/alias\.\([^=]*\)=\(.*\)/Unsetting \\1 = \'\\2\'/'  # -e "s/\(.*\)/$Bold\\1$Off/"
     git config --global --unset "alias.$2"
     exit 0
 fi
 
 if [ $# == 2 ]; then
     # Set an alias
+    # echo "${Bold}Setting $1 = '$2'${Off}"
     echo "Setting $1 = '$2'"
     git config --global "alias.$1" "$2"
     exit 0
 fi
 
 # Else, print in a nice format
-git config --list | grep alias | sed -e $'s/alias\.\([^=]*\)=\(.*\)/\\1 = \'\\2\'/'
+git config --list | grep alias | sed -e $'s/alias\.\([^=]*\)=\(.*\)/\\1 = \'\\2\'/' | sort
 
 ###
