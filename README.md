@@ -34,13 +34,13 @@ _The missing command to make aliases easy to use_
 
 Git aliases are really useful, but arcane to set up or view, not to mention share.
 
-- `git alias` will show existing aliases.
+- `git alias`: Show existing aliases.
 
-- `git alias A 'C'` will map alias `A` to command `C`.
+- `git alias A 'C'`: Map alias `A` to command `C`.
 
-- `git alias -u A` will unset alias `A`.
+- `git alias -u A`: Unset alias `A`.
 
-- `git alias -s` will print aliases as a shell script that can be run on a new machine to set them up there.
+- `git alias -s`: Print aliases as a shell script that can be run on a new machine to set them up there.
 
 Here are a few that I use a lot:
 ```
