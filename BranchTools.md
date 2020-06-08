@@ -4,7 +4,9 @@ _Quicker and easier branch workflow_
 
 Working on feature or bugfix branches is very common when collaborating on code in git repositories, but adhering to best-practice naming conventions like 'users/my_name/JIRA-123-my-feature' can make working with branches tedious.  The workflow gets worse if the change involves multiple repositories, and _much_ worse if we have to juggle several branches.
 
-In fact, git lets us use a different local vs. remote name for branches, but this feature can be arcane to use; these scripts aim to make working with well-named shared branches easier and integrate with allgit to scale across repositories.
+In fact, git lets us use a different local vs. remote name for branches, but this feature can be arcane to use; these scripts aim to make working with well-named shared branches easier and integrate with [allgit] to scale across repositories.
+
+[allgit]: https://github.com/inventhouse/allgit
 
 To describe these commands and how to use them, let's call the local, shorter, name an _alias_ for the longer remote name, and let's say that the remote name is made up of a _prefix_ and a _slug_.
 
