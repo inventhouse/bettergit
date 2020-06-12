@@ -45,18 +45,15 @@ if `echo "$Slug" | grep "/" - > /dev/null`; then
 fi
 
 : ${BranchPrefix:=`git config bettergit.branchprefix`}
-PrefixMessage="change it with: git config --global bettergit.branchprefix 'users/abc'"
 if [ -z "$BranchPrefix" ]; then
     BranchPrefix=`git config user.shortname`
-    echo "${Bold}Using prefix $BranchPrefix/${Off} $PrefixMessage"
-fi
-if [ -z "$BranchPrefix" ]; then
-    BranchPrefix=`git config user.name | tr 'A-Z ' 'a-z_'`
-    echo "${Bold}Using prefix $BranchPrefix/${Off} $PrefixMessage"
-fi
-if [ -z "$BranchPrefix" ]; then
-    BranchPrefix="$USER"
-    echo "${Bold}Using prefix $BranchPrefix/${Off} PrefixMessage"
+    if [ -z "$BranchPrefix" ]; then
+        BranchPrefix=`git config user.name | tr 'A-Z ' 'a-z_'`
+    fi
+    if [ -z "$BranchPrefix" ]; then
+        BranchPrefix="$USER"
+    fi
+    echo "${Bold}Using prefix $BranchPrefix/${Off} set it with: git config --global bettergit.branchprefix 'users/abc'"
 fi
 
 BranchPrefix=`echo "$BranchPrefix"  | sed -e's:/$::'`  # Trim any trailing slash to ensure isn't doubled
