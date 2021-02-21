@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2020 Benjamin Holt -- MIT License
+# Copyright (c) 2020-2021 Benjamin Holt -- MIT License
 
 set -e  # Stop-on-error
 
@@ -7,10 +7,11 @@ if [ "$1" == "-h" -o "$1" == "--help" ]; then
     cat <<USAGE
 Usage:  git save    Show short status, a message saying whether it will
                     automatically add changed files or just staged changes,
-                    and a prompt for a commit message.  Give it a message
-                    to make the commit; no message or ^C will cancel.
+                    and prompt for an optional short commit message.  If no
+                    message is given, git will open your default editor for
+                    a long-form message.  ^C at the prompt to cancel.
         git send    After saving as above, automatically pull with rebase
-                    and autostash and push.
+                    and autostash, then push.
 Options:
         -a|--all    Add all changed files (like 'commit -a') even if there
                     are staged changes; note that this can be given
@@ -52,7 +53,7 @@ if [ -z "$Message" ]; then
     else
         echo "${Bold}Only sending staged changes${Off} (-a MESSAGE to add changed files too)"
     fi
-    echo "${Bold}Enter a message${Off} (^C or no message to cancel)"
+    echo "${Bold}Enter a message${Off} (no message to open editor, ^C to cancel)"
     sleep 0.1
     read -p "${Bold}>${Off} " Message
     Message=`echo "$Message" | sed -e 's/^ *//' -e 's/ *$//'`
@@ -61,11 +62,6 @@ if [ -z "$Message" ]; then
     if [ "$StartsWith" == "-a" -o "$StartsWith" == "--all" ]; then
         AddFlag="$StartsWith"
         Message=`echo "$Message" | sed -e "s/^$StartsWith *//"`
-    fi
-
-    if [ -z "$Message" ]; then
-        echo "${Bold}Canceled${Off}"
-        exit 1
     fi
 fi
 
@@ -76,7 +72,11 @@ fi
 
 sleep 0.1
 echo "${Bold}Committing...${Off}"
-git commit -m "$Message"
+if [ -n "$Message" ]; then
+    git commit -m "$Message"
+else
+    git commit
+fi
 
 CalledAs=`basename "$0"`
 if [ "$CalledAs" == "git-send" ]; then

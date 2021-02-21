@@ -73,12 +73,12 @@ __Consider:__
 - Usually, though, just start with `git save` or `git send`.
 - With no arguments, it will start by printing short status...
 - ...followed by a message saying whether it will add modified files (similar to commit's `-a`), or only commit staged changes...
-- ...and a prompt for your commit message.
-- If there are changes you don't want to commit, `Enter` with no message or `^C` will cancel.
+- ...and a prompt for a short commit message.  If no message is given, `git` will open the default editor for a long-form commit message.
+- If there are changes you don't want to commit, `^C` will cancel.
 
 __Commit:__
 - If there are some staged changes, but you also want to add modified files you can "retroactively" give it a `-a` at the beginning of your commit message (it also mentions this in the message about what it will do)
-- Type your message - make it a good one, not just 'WIP', please! - and hit `Enter`
+- Type your message or let `git` open your editor for a nice long one - make it good, not just 'WIP', please! - and hit `Enter`
 - It will then add modified files, if desired, and make the commit.  If invoked as `git save`, that's all, and you can pull/push when you're ready.
 
 __Push:__
@@ -90,7 +90,7 @@ __Push:__
 ### Advantages:
 - One command with no arguments for most of this workflow
 - Efficient re-use of command history
-- Doesn't spawn a whole editor for a brief message
+- Doesn't spawn a whole editor for a brief message, but still allows that choice after considering your changes
 - Shows and tells you what it's going to do
 - Automates the boring parts without taking away control
 

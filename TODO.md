@@ -7,8 +7,8 @@ git-rbm
 
 git-save
 --------
-- Enable long-form message commits
-    - If no message is supplied, do standard commit instead of canceling
-    - Describe in help and README
+- DONE: Enable long-form message commits
+    - DONE: If no message is supplied, do standard commit instead of canceling
+    - DONE: Describe in help and README
 
 ---
