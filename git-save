@@ -20,6 +20,10 @@ Options:
                     Don't show status or prompt, just do the commit with
                     the given message
         -h|--help   Print this message and exit
+Environment:
+    GitSaveCheckPattern  Grep pattern to search for in the diff; defaults
+                         to NOCOMMIT.  Note that even unstaged changes are
+                         checked.
 
 USAGE
     exit 0
@@ -27,6 +31,8 @@ fi
 
 Bold=`tput bold`
 Off=`tput sgr0`
+
+: ${GitSaveCheckPattern:="NOCOMMIT"}
 
 AddFlag=""
 if [ "$1" == "-a" -o "$1" == "--all" ]; then
@@ -53,6 +59,14 @@ if [ -z "$Message" ]; then
     else
         echo "${Bold}Only sending staged changes${Off} (-a MESSAGE to add changed files too)"
     fi
+
+    # Check for lines marked NOCOMMIT
+    if [ -n "$GitSaveCheckPattern" ]; then
+        git diff HEAD | grep "$GitSaveCheckPattern" \
+            && echo "${Bold}ALERT!${Off} Found lines matching the check pattern ($GitSaveCheckPattern)" \
+            || true
+    fi
+
     echo "${Bold}Enter a message${Off} (no message to open editor, ^C to cancel)"
     sleep 0.1
     read -p "${Bold}>${Off} " Message
