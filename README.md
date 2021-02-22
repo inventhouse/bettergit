@@ -72,8 +72,9 @@ __Consider:__
 - Optionally, if you know you only want to commit specific files, go ahead and `git add`.
 - Usually, though, just start with `git save` or `git send`.
 - With no arguments, it will start by printing short status...
-- ...followed by a message saying whether it will add modified files (similar to commit's `-a`), or only commit staged changes...
-- ...and a prompt for a short commit message.  If no message is given, `git` will open the default editor for a long-form commit message.
+- ...followed by a message saying whether it will add modified files (similar to commit's `-a`), or only commit staged changes.
+- It will check the diff for a pattern (by default `NOCOMMIT`) to catch debugging lines and other things and alert before the commit.
+- Then prompt for a short commit message.  If no message is given, `git` will open the default editor for a long-form commit message.
 - If there are changes you don't want to commit, `^C` will cancel.
 
 __Commit:__
@@ -96,6 +97,9 @@ __Push:__
 
 ### Limitations:
 - Depending on your shell, the message prompt may not have line editing (e.g. arrow keys may show control codes instead of moving the cursor)
+- Not able to add specific files to commit within the tool (nor specific hunks)
+- The pattern check examines the whole diff, as it runs before "knowing for sure" which files will be committed
+- The pattern check does not display filenames for the matched lines
 - It's a hacky shell script
 
 ---
