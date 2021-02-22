@@ -69,7 +69,7 @@ _Streamline the consider-commit flow_
 
 ### It goes like this:
 __Consider:__
-- Optionally, if you know you only want to commit specific files, go ahead and `git add`.
+- Optionally, if you know you only want to commit specific files, go ahead and `git add` them.
 - Usually, though, just start with `git save` or `git send`.
 - With no arguments, it will start by printing short status...
 - ...followed by a message saying whether it will add modified files (similar to commit's `-a`), or only commit staged changes.
