@@ -1,6 +1,18 @@
 To Do
 =====
 
+git-lop
+-------
+Git log from pasteboard - select a hash, and get that log without pasteing for quick access and re-use of command history
+
+git-logjump
+-----------
+A `git log --oneline` format that adds a Jira-style "project" abbreviation to the hash combined with a shortcut service to open that log
+
+### how to make it work
+- log oneline command could made a short symlink in a known location back to the git directory and add that prefix to log hashes
+- service splits prefix from hash and uses the symlink to open a detailed log in the right repo
+
 git-rbm
 -------
 - Rebase from DEFAULT_BRANCH or main or master
