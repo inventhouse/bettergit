@@ -40,7 +40,7 @@ Git aliases are really useful for making `git` work the way _you_ want, but arca
 
 - `git alias -u A`: Unset alias `A`.
 
-- `git alias -s`: Print aliases as a shell script that can be run on a new machine to set them up there (note that the script uses standard `git` commands and does not require `git alias`.)
+- `git alias -s`: Print aliases as a shell script that can be run on a new machine to set them up there.  Note that the script will use standard `git` commands and won't require `git alias`.
 
 Here are a few that I use a lot:
 ```
