@@ -37,11 +37,13 @@ In addition to `git newb` and `git killb`, there are a few more commands:
 
 - `$ git listb` will show all the branches that have a different local vs. remote name (including local-only branches); it also lists the current branch even if that isn't aliased.
 - `$ git setupb JIRA-234-add-foobar [foo]` will push up the existing local branch `foo` (or the current branch), so we can separate local branch creation from pushing.
-- `$ git getb users/abc/JIRA-112-make-a-thing [alias]` will check out a local branch `mat` (or whatever alias we want) for an existing remote branch
+- `$ git getb users/jkl/JIRA-112-make-a-thing [alias]` will check out a local branch `mat` (or whatever alias we want) for an existing remote branch (Note that the remote branch does _not_ need to use the same prefix or conventions)
 - `$ git dropb foo` will delete the local branch `foo`, but _not_ the remote branch
 
 All of the commands print help when run with `-h`.
 
+Scaling with Allgit
+-------------------
 | Commands | Notes |
 |----------|-------|
 | _(start implementing a feature)_ ||
