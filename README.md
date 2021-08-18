@@ -44,12 +44,12 @@ Git aliases are really useful, but arcane to set up or view, not to mention shar
 
 Here are a few that I use a lot:
 ```
-co = 'checkout'
-cp = 'cherry-pick'
-lo = 'log -n 10 --oneline'
-pra = 'pull -r --autostash'
-rbm = 'rebase origin/master'
-ss = 'status -s'
+git alias co 'checkout'
+git alias cp 'cherry-pick'
+git alias lo 'log -n 10 --oneline'
+git alias pra 'pull -r --autostash'
+git alias rbm 'rebase origin/master'
+git alias ss 'status -s'
 ```
 
 Git aliases can even run non-git commands with the shell escape `!`
