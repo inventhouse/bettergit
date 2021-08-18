@@ -32,7 +32,7 @@ git alias
 ---------
 _The missing command to make aliases easy to use_
 
-Git aliases are really useful, but arcane to set up or view, not to mention share.
+Git aliases are really useful for making `git` work the way _you_ want, but arcane to set up or view, not to mention share.
 
 - `git alias`: Show existing aliases.
 
@@ -40,7 +40,7 @@ Git aliases are really useful, but arcane to set up or view, not to mention shar
 
 - `git alias -u A`: Unset alias `A`.
 
-- `git alias -s`: Print aliases as a shell script that can be run on a new machine to set them up there.
+- `git alias -s`: Print aliases as a shell script that can be run on a new machine to set them up there (note that the script uses standard `git` commands and does not require `git alias`.)
 
 Here are a few that I use a lot:
 ```
