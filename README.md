@@ -30,9 +30,9 @@ Git will automatically pick them up as new commands, which also means they can b
 
 git alias
 ---------
-_The missing command to make aliases easy to use_
+_The missing command to make git aliases easy to use_
 
-Git aliases are really useful for making `git` work the way _you_ want, but arcane to set up or view, not to mention share.
+Git aliases are really useful for making `git` work the way _you_ want, but they're arcane to set up or view, not to mention share.
 
 - `git alias`: Show existing aliases.
 
