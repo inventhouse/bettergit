@@ -2,7 +2,7 @@ Better Git
 ==========
 _Tools and improvements for better git workflows_
 
-Install these tools by cloning the repo and adding it to your shell's PATH; for example add the following to your `~/.bash_profile`
+Install these tools by cloning the repo and adding it to your shell's PATH; for example add the following to your `~/.bash_profile` or `.zshrc`:
 ```bash
 export PATH="$PATH:$HOME/bettergit"
 ```
