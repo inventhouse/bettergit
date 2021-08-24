@@ -16,6 +16,48 @@ A `git log --oneline` format that adds a Jira-style "project" abbreviation to th
 git-rbm
 -------
 - Rebase from DEFAULT_BRANCH or main or master
+- Some various ways this can be done:
+```
+Tim McCormack [he or they]  4 months ago
+The best I have so far is this. There's gotta be a better way...
+git remote show $(git remote | head -n1) | grep "HEAD branch:" | sed 's/.*: //'
+
+
+Michael Terry:ghost:  4 months ago
+https://stackoverflow.com/questions/28666357/git-how-to-get-default-branch suggests:
+git symbolic-ref refs/remotes/origin/HEAD
+(edited)
+Stack OverflowStack Overflow
+git - how to get default branch?
+My team alternates between usage of dev and master as default branch for several repos and I would like to write a script that checks for the default branch when entering a directory. When pull re...
+:nice:
+1
+
+Tim McCormack [he or they]  4 months ago
+git checkout $(git symbolic-ref refs/remotes/origin/HEAD | sed 's|^refs/remotes/[^/]\+/||')
+
+Tim McCormack [he or they]  4 months ago
+gross but it works
+
+Tim McCormack [he or they]  4 months ago
+Oh hmm, still need to get "origin"...
+
+Tim McCormack [he or they]  4 months ago
+git symbolic-ref "refs/remotes/$(git remote | head -n1)/HEAD" | sed 's|^refs/remotes/[^/]\+/||' yay (edited) 
+
+Tim McCormack [he or they]  4 months ago
+(Actually longer than the first thing I had, but this is language-neutral; "branch" is not reliable if your system isn't in English...) (edited) 
+
+Michael Terry:ghost:  4 months ago
+git ls-remote --symref git:pointer-to-your-repo HEAD
+^ also from that SO page - looks like it doesn't require a checkout?
+
+Tim McCormack [he or they]  4 months ago
+Whoops, didn't need the checkout, that was a copy error.
+
+Ned Batchelder  4 months ago
+I use: git checkout $(git branch -a | sed -n -E -e '/remotes.origin.ma(in|ster)/s@remotes/origin/@@p')
+```
 
 git-save
 --------
