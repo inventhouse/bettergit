@@ -13,7 +13,7 @@ To describe these commands and how to use them, let's call the local, shorter, n
 
 Setup
 -----
-Assuming allgit is set up as described in [README.md](README.md), there are two more things to do, the first tells git to use the remote, "upstream", branch for push:
+Assuming bettergit is set up as described in [README.md](README.md), there are two more things to do, the first tells git to use the remote, "upstream", branch for push:
 
 `$ git config --global push.default upstream`
 
