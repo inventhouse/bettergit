@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Copyright (c) 2021 Benjamin Holt -- MIT License
+
+set -e  # Stop-on-error
+
+if [ "$1" == "-h" -o "$1" == "--help" ]; then
+    cat <<USAGE
+usage: git rebase-default [REMOTE]    Rebase the current branch on the
+                                      default branch of REMOTE ('origin'
+                                      by default)
+       git rebase-default -h|--help   Print this message and exit
+
+notes:
+    If the remote default branch has changed since this clone was made,
+    run `git remote set-head REMOTE --auto`
+
+config:
+    git config bettergit.defaultremote REMOTE   Set the default remote
+USAGE
+    exit 0
+fi
+
+Bold=`tput bold`
+Off=`tput sgr0`
+
+Remote="$1"
+if [ -z "$Remote" ]; then
+    ConfigRemote=`git config bettergit.defaultremote`
+    Remote=${ConfigRemote:-"origin"}  # REM: maybe use the first remote by default? `git remote | head -n1`
+fi
+
+Other=`git symbolic-ref refs/remotes/origin/HEAD | sed -e 's:^refs/remotes/::'`
+
+echo "${Bold}Rebasing onto ${Other}${Off}"
+git rebase "$Other"
+
+###
