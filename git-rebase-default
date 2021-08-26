@@ -6,6 +6,7 @@ set -e  # Stop-on-error
 
 if [ "$1" == "-h" -o "$1" == "--help" ]; then
     cat <<USAGE
+                ***** BETA *****
 usage: git rebase-default [REMOTE]    Rebase the current branch on the
                                       default branch of REMOTE ('origin'
                                       by default)
@@ -33,6 +34,6 @@ fi
 Other=`git symbolic-ref refs/remotes/origin/HEAD | sed -e 's:^refs/remotes/::'`
 
 echo "${Bold}Rebasing onto ${Other}${Off}"
-git rebase "$Other"
+echo ${Bold}DRY-RUN${Off} git rebase "$Other"
 
 ###
