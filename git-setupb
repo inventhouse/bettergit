@@ -31,7 +31,7 @@ if [ -z "$Branch" ]; then
 fi
 
 ConfigRemote=`git config bettergit.defaultremote`
-: ${DefaultRemote:=${ConfigRemote:-"origin"}}
+: ${DefaultRemote:=${ConfigRemote:-"origin"}}  # REM: maybe use the first remote by default? `git remote | head -n1`
 
 Upstream=`git rev-parse --abbrev-ref "$Alias@{upstream}" 2> /dev/null | sed -e "s:$DefaultRemote/::"`
 if [ "$Upstream" ]; then
