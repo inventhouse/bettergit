@@ -3,7 +3,7 @@
 # Copyright (c) 2021 Benjamin Holt -- MIT License
 
 set -e  # Stop-on-error
-# set -x  # Uncomment for debugging
+set -x  # Uncomment for debugging
 
 if [ "$1" == "-h" -o "$1" == "--help" ]; then
     cat <<USAGE
@@ -15,7 +15,7 @@ usage: git rebase-default [REMOTE]    Rebase the current branch on the
 
 notes:
     If the remote default branch has changed since this clone was made,
-    run `git remote set-head REMOTE --auto`
+    run 'git remote set-head REMOTE --auto'
 
 config:
     git config bettergit.defaultremote REMOTE   Set the default remote
@@ -32,7 +32,7 @@ if [ -z "$Remote" ]; then
     Remote=${ConfigRemote:-"origin"}  # REM: maybe use the first remote by default? `git remote | head -n1`
 fi
 
-Other=`git symbolic-ref refs/remotes/origin/HEAD | sed -e 's:^refs/remotes/::'`
+Other=`git symbolic-ref refs/remotes/${Remote}/HEAD | sed -e 's:^refs/remotes/::'`
 
 echo "${Bold}Rebasing onto ${Other}${Off}"
 echo ${Bold}DRY-RUN${Off} git rebase "$Other"
