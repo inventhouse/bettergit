@@ -15,6 +15,8 @@ Git will automatically pick them up as new commands, which also means they can b
 
 **[git alias](#git-alias):** Set, unset, view, and share git aliases.
 
+**[git rebase-default](#git-rebase-default):** Rebases the current branch onto the remote's default branch whether that's `main`, `master`, or something else.
+
 **[git save](#git-save):** Streamlines the consider-commit process; if called as `git send` it also pushes after committing.
 
 **[BranchTools](BranchTools.md):** A collection of commands to make working with branches better, especially ones with short "alias" local names, and longer best-practice remote names.
@@ -50,7 +52,8 @@ git alias co 'checkout'
 git alias cp 'cherry-pick'
 git alias lo 'log -n 10 --oneline'
 git alias pra 'pull -r --autostash'
-git alias rbm 'rebase origin/master'
+git alias rbd 'rebase-default'
+git alias rbu 'rebase-default upstream'
 git alias ss 'status -s'
 ```
 
@@ -61,6 +64,25 @@ Setting hi = '! echo Hello'
 $ git hi
 Hello
 ```
+
+
+git rebase-default
+------------------
+_Rebase onto the default branch_
+
+Some repositories still haven't switched to `main` for the default branch, some have been using their own convention for a long time; `rebase-default` makes it easy to rebase onto the "right" branch:
+
+`git rebase-default [REMOTE]`
+
+The default `REMOTE` is `origin`, but it can be overridden with:
+
+`git config bettergit.defaultremote REMOTE`
+
+If a remote has changed its default branch after you cloned it, you can sync them up with:
+
+`git remote set-head REMOTE --auto`
+
+There are a couple [aliases above](#git-alias) that make `rebase-default` even easier to use.
 
 
 git save
