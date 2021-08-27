@@ -3,7 +3,7 @@
 # Copyright (c) 2021 Benjamin Holt -- MIT License
 
 set -e  # Stop-on-error
-set -x  # Uncomment for debugging
+# set -x  # Uncomment for debugging
 
 if [ "$1" == "-h" -o "$1" == "--help" ]; then
     cat <<USAGE
