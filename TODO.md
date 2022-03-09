@@ -1,6 +1,10 @@
 To Do
 =====
 
+git-dropb
+---------
+FIXME: currently hardcodes `master` as the default branch, adapt logic from rebase-default
+
 git-lop
 -------
 Git log from pasteboard - select a hash, and get that log without pasteing for quick access and re-use of command history
