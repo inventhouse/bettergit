@@ -37,7 +37,7 @@ if [ -z "$DefaultBranch" ]; then
     # FIXME: copied from git-rebase-default and modified, try to unify
     ConfigRemote=`git config bettergit.defaultremote || echo ""`
     Remote=${ConfigRemote:-"origin"}  # REM: maybe use the first remote by default? `git remote | head -n1`
-    DefaultBranch=`git symbolic-ref refs/remotes/${Remote}/HEAD | sed -e 's:^refs/remotes/origin/::'`
+    DefaultBranch=`git symbolic-ref refs/remotes/${Remote}/HEAD | sed -e "s:^refs/remotes/${Remote}/::"`
 fi
 
 if [ "$Alias" == "$DefaultBranch" ]; then
