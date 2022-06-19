@@ -1,12 +1,23 @@
 #!/bin/bash
 
-# Copyright (c) 2019-2020 Benjamin Holt -- MIT License
+# Copyright (c) 2019-2022 Benjamin Holt -- MIT License
 
 if [ "$1" == "-h" -o "$1" == "--help" ]; then
     cat <<USAGE
 usage: git dropb [ALIAS]      Deletes local branch ALIAS, ALIAS defaults to
                           ALLGIT_BRANCH
        git dropb -h|--help    Print this message and exit
+notes:
+    If ALIAS is the current branch, dropb will try to switch to the
+    default branch.  If no default branch is configured, dropb will try
+    to find the default branch of the default remote or 'origin'.
+
+    If the remote default branch has changed since this clone was made,
+    run 'git remote set-head REMOTE --auto'
+
+config:
+    git config bettergit.defaultbranch BRANCH   Set the default branch
+    git config bettergit.defaultremote REMOTE   Set the default remote
 USAGE
     exit 0
 fi
@@ -20,8 +31,14 @@ if [ -z "$Alias" ]; then
     exit 1
 fi
 
-ConfigBranch=`git config bettergit.defaultbranch`
-: ${DefaultBranch:=${ConfigBranch:-"master"}}
+DefaultBranch=`git config bettergit.defaultbranch`
+# : ${DefaultBranch:=${ConfigBranch:-"master"}}
+if [ -z "$DefaultBranch" ]; then
+    # FIXME: copied from git-rebase-default and modified, try to unify
+    ConfigRemote=`git config bettergit.defaultremote || echo ""`
+    Remote=${ConfigRemote:-"origin"}  # REM: maybe use the first remote by default? `git remote | head -n1`
+    DefaultBranch=`git symbolic-ref refs/remotes/${Remote}/HEAD | sed -e 's:^refs/remotes/origin/::'`
+fi
 
 if [ "$Alias" == "$DefaultBranch" ]; then
     echo "Deleting the default branch $DefaultBranch is not generally a good idea" >&2
